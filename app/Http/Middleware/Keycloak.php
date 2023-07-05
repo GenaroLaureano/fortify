@@ -2,10 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Interfaces\Auronix\Auth\OpenIDConnecInterface;
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Jumbojett\OpenIDConnectClient;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Keycloak
 {
