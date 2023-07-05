@@ -23,7 +23,7 @@ class ControllerTest extends Controller
         );
     }
 
-    private function getConfigParams(): array
+    private function getConfigParams()
     {
         try {
             $config_params = Http::get(config('keycloak.authServerUrl').'/realms/'.config('keycloak.realm').'/.well-known/openid-configuration');
