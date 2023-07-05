@@ -37,7 +37,7 @@ class ExampleTest extends TestCase
     private function getConfigParams(): array
     {
         try {
-            $config_params = Http::get(config('keycloak.authServerUrl').'/realms/'.config('keycloak.realm').'/.well-known/openid-configuration');
+            $config_params = Http::get('http://localhost:8080/realms/hub-dev/.well-known/openid-configuration');
         } catch (Exception $e) {
             throw new HttpException(503, $e->getMessage());
         }
