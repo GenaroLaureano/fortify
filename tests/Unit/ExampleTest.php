@@ -10,6 +10,11 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ExampleTest extends TestCase
 {
+    protected function setup(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * A basic test example.
      *
