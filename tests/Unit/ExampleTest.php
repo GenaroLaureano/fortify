@@ -17,7 +17,7 @@ class ExampleTest extends TestCase
      */
     public function test_that_true_is_true()
     {
-        $this->assertIsArray($this->getConfigParams())
+        $this->assertIsArray($this->getConfigParams());
     }
 
     private function getOpenIdConnectClient()
