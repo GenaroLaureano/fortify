@@ -3,7 +3,7 @@
 exec docker run \
     -d \
     -v "/var/run/docker.sock":"/var/run/docker.sock" \
-    -v "/realms/:/opt/keycloak/data/import/" \
+    -v /${pwd}/keycloak/realms:/opt/keycloak/data/import \
     -p $INPUT_KEYCLOAK_HTTP_PORT:8080 \
     -e KEYCLOAK_ADMIN=$INPUT_KEYCLOAK_ADMIN_USER \
     -e KEYCLOAK_ADMIN_PASSWORD=$INPUT_KEYCLOAK_ADMIN_PASS \
