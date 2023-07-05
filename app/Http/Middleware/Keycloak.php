@@ -19,7 +19,7 @@ class Keycloak
         dump($this->getConfigParams());
         $session = $oidc->introspectToken(session('user-access-token', ''));
 
-        if (! $session->active) {
+        if (! property_exists($session, 'active') ||  ! $session->active) {
             return redirect('/login');
         }
 
