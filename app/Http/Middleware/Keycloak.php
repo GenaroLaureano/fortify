@@ -15,6 +15,7 @@ class Keycloak
     {
         $oidc = $this->getOpenIdConnectClient();
         $oidc->providerConfigParam($this->getConfigParams());
+        dump($this->getConfigParams());
         $session = $oidc->introspectToken(session('user-access-token', ''));
 
         if (! $session->active) {
