@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use Exception;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Facades\Http;
 use Jumbojett\OpenIDConnectClient;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
