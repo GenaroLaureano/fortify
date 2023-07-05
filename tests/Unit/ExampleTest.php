@@ -23,26 +23,13 @@ class ExampleTest extends TestCase
     public function test_that_true_is_true()
     {
         $this->assertTrue(true);
-        // $this->assertIsArray($this->getConfigParams());
     }
 
-    private function getOpenIdConnectClient()
+    public function test_get_index()
     {
-        return new OpenIDConnectClient(
-            config('keycloak.authServerUrl'),
-            config('keycloak.realm'),
-            config('keycloak.clientSecret')
-        );
+        $response = $this->get(route('test.index'));
+        $response->assertStatus(200);
     }
 
-    private function getConfigParams(): array
-    {
-        try {
-            $config_params = Http::get('http://localhost:8080/realms/hub-dev/.well-known/openid-configuration');
-        } catch (Exception $e) {
-            throw new HttpException(503, $e->getMessage());
-        }
-
-        return $config_params->collect()->toArray();
-    }
+    
 }
