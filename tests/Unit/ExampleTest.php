@@ -28,6 +28,7 @@ class ExampleTest extends TestCase
     public function test_get_index()
     {
         $response = $this->get(route('test.index'));
+        $response->dd();
         $response->assertStatus(200);
     }
 

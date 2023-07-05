@@ -28,7 +28,7 @@ class ControllerTest extends Controller
         try {
             $config_params = Http::get(config('keycloak.authServerUrl').'/realms/'.config('keycloak.realm').'/.well-known/openid-configuration');
         } catch (Exception $e) {
-            throw new HttpException(503, $e->getMessage());
+            return $e->getMessage();
         }
 
         return $config_params->collect()->toArray();
