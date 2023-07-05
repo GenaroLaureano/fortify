@@ -13,13 +13,13 @@ class Keycloak
 {
     public function handle(Request $request, Closure $next)
     {
-        // $oidc = $this->getOpenIdConnectClient();
-        // $oidc->providerConfigParam($this->getConfigParams());
-        // $session = $oidc->introspectToken('');
+        $oidc = $this->getOpenIdConnectClient();
+        $oidc->providerConfigParam($this->getConfigParams());
+        $session = $oidc->introspectToken(session('user-access-token', ''));
 
-        // if (! $session->active) {
-        //     return redirect('/login');
-        // }
+        if (! $session->active) {
+            return redirect('/login');
+        }
 
         return $next($request);
     }
@@ -36,7 +36,7 @@ class Keycloak
     private function getConfigParams(): array
     {
         try {
-            $config_params = Http::get('http://0.0.0.0:8080/realms/hub-dev/.well-known/openid-configuration');
+            $config_params = Http::get(config('keycloak.authServerUrl').'/realms/'.config('keycloak.realm').'/.well-known/openid-configuration');
         } catch (Exception $e) {
             throw new HttpException(503, 'Service Unavailable', null);
         }
