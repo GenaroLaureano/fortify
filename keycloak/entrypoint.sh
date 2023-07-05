@@ -2,9 +2,10 @@
 
 exec docker run \
     -d \
+    -v "/var/run/docker.sock":"/var/run/docker.sock" \
     -v "/$(pwd)/keycloak/realms/:/opt/keycloak/data/import/" \
-    -p 8080:8080 \
-    -e KEYCLOAK_ADMIN=admin \
-    -e KEYCLOAK_ADMIN_PASSWORD=admin \
-    quay.io/keycloak/keycloak:21.1 \
+    -p $INPUT_KEYCLOAK_HTTP_PORT:8080 \
+    -e KEYCLOAK_ADMIN=$INPUT_KEYCLOAK_ADMIN_USER \
+    -e KEYCLOAK_ADMIN_PASSWORD=$INPUT_KEYCLOAK_ADMIN_PASS \
+    quay.io/keycloak/keycloak:$INPUT_KEYCLOAK_VERSION \
     start-dev --import-realm

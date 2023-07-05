@@ -25,6 +25,9 @@ jobs:
       uses: ./keycloak/
       with:
         keycloak_version: 21.1
+        keycloak_http_port: 8080
+        keycloak_admin_user: admin
+        keycloak_admin_pass: admin
 
     - name: KeyCloak is up
       run: bash -c 'while [[ "$(curl -L -s -o /dev/null -w %{http_code} http://localhost:8080/)" != "200" ]]; do sleep 5; done'
