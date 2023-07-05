@@ -1,0 +1,23 @@
+name: 'Setup Keycloak Action'
+author: Aurotek
+description: 'GitHub Action for Keycloak'
+branding:
+  color: 'blue'
+  icon: 'play-circle'
+inputs:
+  keycloak_version:
+    description: 'Setup Keycloak Version'
+    default: 'latest'
+    required: true
+  keycloak_http_port:
+    description: 'Setup Keycloak HTTP Port'
+    default: '8080'
+  keycloak_admin_user:
+    description: 'Setup Keycloak Admin User'
+    default: 'admin'
+  keycloak_admin_pass:
+    description: 'Setup Keycloak Admin Pass'
+    default: 'admin'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
