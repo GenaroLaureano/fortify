@@ -13,13 +13,13 @@ class Keycloak
 {
     public function handle(Request $request, Closure $next)
     {
-        // $oidc = $this->getOpenIdConnectClient();
-        // $oidc->providerConfigParam($this->getConfigParams());
-        // $session = $oidc->introspectToken(session('user-access-token', ''));
+        $oidc = $this->getOpenIdConnectClient();
+        $oidc->providerConfigParam($this->getConfigParams());
+        $session = $oidc->introspectToken('');
 
-        // if (! $session->active) {
-        //     return redirect('/login');
-        // }
+        if (! $session->active) {
+            return redirect('/login');
+        }
 
         return $next($request);
     }
