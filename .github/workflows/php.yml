@@ -30,7 +30,7 @@ jobs:
         keycloak_admin_pass: admin
 
     - name: KeyCloak is up
-      run: bash -c 'while [[ "$(curl -L -s -o /dev/null -w %{http_code} http://localhost:8080/realms/hub2/.well-known/openid-configuration)" != "200" ]]; do sleep 5; done'
+      run: bash -c 'while [[ "$(curl -L -s -o /dev/null -w %{http_code} http://localhost:8080/)" != "200" ]]; do sleep 5; done'
 
     - uses: actions/checkout@v3
 
