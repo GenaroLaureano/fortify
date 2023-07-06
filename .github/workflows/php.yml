@@ -10,14 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-
     - name: Setup Keycloak
       uses: ./keycloak/
       with:
@@ -29,8 +21,6 @@ jobs:
     - name: KeyCloak is up
       run: bash -c 'while [[ "$(curl -L -s -o /dev/null -w %{http_code} http://localhost:8080/)" != "200" ]]; do sleep 5; done'
 
-    # - name: Import realm
-      # run: docker exec keycloak bash -c "/opt/keycloak/bin/kc.sh import --file /opt/keycloak/data/import/hub_realm.json"
     - name: CLI keycloak
       run: docker exec keycloak bash -c "/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin"
 

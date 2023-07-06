@@ -30,6 +30,4 @@ class ExampleTest extends TestCase
         $response = $this->get(route('test.index'));
         $response->assertRedirect('/');
     }
-
-    
 }

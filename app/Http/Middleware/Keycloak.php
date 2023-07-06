@@ -15,8 +15,6 @@ class Keycloak
     {
         $oidc = $this->getOpenIdConnectClient();
         $oidc->providerConfigParam($this->getConfigParams());
-        dump(config('keycloak.authServerUrl').'/realms/'.config('keycloak.realm').'/.well-known/openid-configuration');
-        dump($this->getConfigParams());
         $session = $oidc->introspectToken(session('user-access-token', ''));
 
         if (! $session->active) {
