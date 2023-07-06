@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "hello miss"
+cat $(pwd)/keycloak/realms/hub_realm.json
 
 exec docker run \
     -d \
