@@ -29,8 +29,16 @@ jobs:
     - name: KeyCloak is up
       run: bash -c 'while [[ "$(curl -L -s -o /dev/null -w %{http_code} http://localhost:8080/)" != "200" ]]; do sleep 5; done'
 
-    - name: Import realm
-      run: docker exec keycloak bash -c "/opt/keycloak/bin/kc.sh import --file /opt/keycloak/data/import/hub_realm.json"
+    # - name: Import realm
+      # run: docker exec keycloak bash -c "/opt/keycloak/bin/kc.sh import --file /opt/keycloak/data/import/hub_realm.json"
+    - name: CLI keycloak
+      run: docker exec keycloak bash -c "/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin"
+
+    - name: Create realm
+      run: docker exec keycloak bash -c "/opt/keycloak/bin/kcadm.sh create realms -s realm=hub -s enabled=true -o"
+
+    - name: Create client
+      run: docker exec keycloak bash -c "/opt/keycloak/bin/kcadm.sh create clients -r hub -s clientId=hub -s enabled=true -s clientAuthenticatorType=client-secret -s secret=8eZ8Mq52xiEYJRIkaCz7ffSb0o6sBxkD"
 
     - uses: actions/checkout@v3
 
